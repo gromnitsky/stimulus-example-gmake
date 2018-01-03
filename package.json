@@ -1,0 +1,10 @@
+{
+    "private": true,
+    "name": "stimulus-gmake",
+    "version": "1.0.0",
+    "author": "me",
+    "license": "MIT",
+    "dependencies": {
+        "stimulus": "^0.9.0"
+    }
+}

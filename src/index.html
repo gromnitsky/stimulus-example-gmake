@@ -1,0 +1,32 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="main.css">
+
+<h1>Стім'юлес</h1>
+
+<div data-controller="hello">
+  <input data-target="hello.name" type="text">
+  <button data-action="click->hello#greet">Greet</button>
+  <button data-action="hello#copy_to_cb">Copy</button>
+</div>
+
+<hr>
+
+<div data-controller="slideshow">
+  <button data-action="slideshow#prev">←</button>
+  <button data-action="slideshow#next">→</button>
+
+  <div data-target="slideshow.slide" class="slide">First</div>
+  <div data-target="slideshow.slide" class="slide">Second</div>
+  <div data-target="slideshow.slide" class="slide">Third</div>
+  <div data-target="slideshow.slide" class="slide">Fourth</div>
+</div>
+
+<!-- deps -->
+<script src="vendor/stimulus/dist/stimulus.umd.js"></script>
+
+<!-- our code -->
+<script type="module" src="main.js"></script>
