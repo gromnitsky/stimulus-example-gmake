@@ -4,4 +4,17 @@
 
 .slide.slide--current {
   display: block;
+  margin-top: 0.5em;
+  font-size: xx-large;
+}
+
+
+body {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 120, 255, 0.4) 100%), url('qQGJsUI.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+html {
+  height: 100%;
 }
