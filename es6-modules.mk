@@ -1,4 +1,5 @@
-out := _out
+NODE_ENV ?= development
+out := _out.$(basename $(lastword $(MAKEFILE_LIST))).$(NODE_ENV)
 mkdir = @mkdir -p $(dir $@)
 copy = cp $< $@
 
