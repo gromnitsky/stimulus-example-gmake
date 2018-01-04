@@ -81,3 +81,52 @@ I.e., when you change `package.json` & invoke Make, it runs `npm i`,
 `node_modules` dir present.
 
 [1]: https://www.gnu.org/software/make/manual/html_node/Remaking-Makefiles.html#Remaking-Makefiles)
+
+
+## A single bundle
+
+If you like to have exactly 1 script tag, i.e., instead of
+
+~~~
+<!-- deps -->
+<script src="vendor/stimulus/dist/stimulus.umd.js"></script>
+<!-- our code -->
+<script src="main.js"></script>
+~~~
+
+you prefer (why?)
+
+~~~
+<script src="main.js"></script>
+~~~
+
+it's possible to employ rollup to include the whole src code of
+stimulus into the bundle.
+
+1. `$ npm i rollup-plugin-node-resolve`
+
+2. Add the corresponding import lines to `src/main.js` (`import {
+	Application } from "stimulus"`) & to `src/ctrl/*` (`import {
+	Controller } from "stimulus"`). Change `
+	Stimulus.Application.start()` to ` Application.start()`, &c. (See
+	[INSTALLING.md in the stimulus repo][2].)
+
+3. Replace the recipe for `$(out)/main.js` target (in `bundle.mk`) w/:
+
+	~~~
+	$(out)/main.js: $(js.src)
+		$(mkdir)
+		rollup -f iife -c cf.rollup.node-modules.js src/main.js $(rollup.opt)
+		...
+	~~~
+
+	where `cf.rollup.node-modules.js` is:
+
+	~~~
+	import resolve from 'rollup-plugin-node-resolve';
+	export default {
+		plugins: [ resolve() ]
+	};
+	~~~
+
+[2]: https://github.com/stimulusjs/stimulus/blob/master/INSTALLING.md
